@@ -87,7 +87,7 @@ def scrape_info():
         mars_clean_fact_df = mars_clean_fact_df.set_index("Description")
 
         # generate an html file of the df to the Resources folder
-        fact_table = mars_clean_fact_df.to_html()
+        fact_table = mars_clean_fact_df.to_html(classes='table table-striped')
 
 ################################################################################
 # Mars Hemispheres
