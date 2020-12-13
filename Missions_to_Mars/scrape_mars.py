@@ -13,7 +13,7 @@ mars_scrape_dict = {}
 ################################################################################
 # NASA Mars News
 ################################################################################
-def scrape_mars_news():
+def scrape_info():
 
         executable_path = {'executable_path': 'C:\ProgramData\ChromeDriver\chromedriver'}
         browser = Browser('chrome', **executable_path, headless=False)
