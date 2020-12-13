@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -14,18 +14,69 @@
 
         <!--Jumbotron with button to scrape the data-->
         <div class="jumbotron text-center">
-          <h1>Mission to Mars</h1>
+          <h1 style="font-weight: bold;">Mission to Mars</h1>
           <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
 
-        <!--Latest Mars News Scrape-->
-        <div id="mars_news" class="container">
-            <h2>Latest Mars News</h2>
-            <h4>{{ mars_data.news_title }}</h4>
-            <p>{{ mars_data.news_p }}</p>
-        </div>
+        <!--Latest Mars News Scrape Header-->
+        <div class="container"></div>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h2><strong>Latest Mars News</strong></h2>
+                </div>
+            </div>
+            <!--Latest Mars News Scraped Data-->
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h4><strong>{{ mars_data.news_title }}</strong></h4>
+                    <p>{{ mars_data.news_p }}</p>
+                </div>
+            </div>
+            <hr>
+            <!--Featured Image-->
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h2><strong>Featured Mars Image</strong></h2>
+                    <img src="{{mars_data.featured_image_url}}" style="max-width:100%; max-height: auto;" alt="Features Mars Image">
+                </div>
+            
+                <!-- Scraped Fact Table-->
+            
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <h2><strong>Mars Facts</strong></h2>                        
+                        {{ mars_data.fact_table  | safe}}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>  
+
+        <h2 style="text-align: center;"><strong>Mars Hemispheres</strong></h2>  
+
+        <hr>
+        <div class="row">       
+            {% for hemi in mars_data.hemisphere_image_urls %} 
+              <div class="col-md-6">
+                <div class="card" style="padding: 10px;">
+                    <img src="{{ hemi.img_url }}" style="max-width:100%; max-height:auto;" />   
+                    <div class="card-body">                   
+                        <h4><strong>{{ hemi.title }}</strong></h4>  
+                    </div>                    
+                </div>
+              </div>
+            {% endfor %}
+        </div> 
     
     </div>
+
+            <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
