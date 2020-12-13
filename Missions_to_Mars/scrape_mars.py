@@ -33,25 +33,12 @@ def scrape_mars_news():
 
         # collect the latest News Title and Paragraph Text
         mars_news_find = mars_news_soup.find("div", class_="list_text")
-
         news_title = mars_news_find.find('div', class_='content_title').text
-
         news_p = mars_news_find.find('div', class_='article_teaser_body').text 
-
-        mars_scrape_dict['news_title'] = news_title
-        mars_scrape_dict['news_p'] = news_p
-
-        browser.quit()
-        
-        return mars_scrape_dict
 
 ################################################################################
 # JPL Mars Space Images - Featured Image
 ################################################################################
-def scrape_jpl():
-
-        executable_path = {'executable_path': 'C:\ProgramData\ChromeDriver\chromedriver'}
-        browser = Browser('chrome', **executable_path, headless=False)
 
         # url for scraping
         jpl_base_url = 'https://www.jpl.nasa.gov/'
@@ -83,19 +70,9 @@ def scrape_jpl():
         # concatenate the base and img urls
         featured_image_url = jpl_base_url + image_url
 
-        mars_scrape_dict['image_url'] = featured_image_url
-
-        browser.quit()
-
-        return mars_scrape_dict
-
 ################################################################################
 # Mars Facts
 ################################################################################
-def scrape_facts():
-
-        executable_path = {'executable_path': 'C:\ProgramData\ChromeDriver\chromedriver'}
-        browser = Browser('chrome', **executable_path, headless=False)
 
         # declare the url for pandas to scrape
         mars_facts_url = 'https://space-facts.com/mars/'
@@ -110,21 +87,11 @@ def scrape_facts():
         mars_clean_fact_df = mars_clean_fact_df.set_index("Description")
 
         # generate an html file of the df to the Resources folder
-        html_table = mars_clean_fact_df.to_html()
-
-        mars_scrape_dict['html_table'] = html_table
-
-        browser.quit()
-
-        return mars_scrape_dict
+        fact_table = mars_clean_fact_df.to_html()
 
 ################################################################################
 # Mars Hemispheres
 ################################################################################
-def scrape_hemi():
-
-        executable_path = {'executable_path': 'C:\ProgramData\ChromeDriver\chromedriver'}
-        browser = Browser('chrome', **executable_path, headless=False)
 
         # declare the urls
         mars_hemi_base_url = 'https://astrogeology.usgs.gov'
@@ -174,8 +141,23 @@ def scrape_hemi():
                                                 "img_url": img_url
                                                 })
 
-                mars_scrape_dict['hemis'] = hemisphere_image_urls
+
+
+################################################################################
+# Output
+################################################################################
+
+        # store all scraped data in one dictionary    
+         
+        mars_scrape_dict = {
+                "news_title": news_title,
+                "news_p": news_p,
+                "featured_image_url": featured_image_url,
+                "fact_table": fact_table,
+                "hemisphere_image_urls": hemisphere_image_urls
+        } 
         
+        # close the broswer
         browser.quit()
         return mars_scrape_dict
 
