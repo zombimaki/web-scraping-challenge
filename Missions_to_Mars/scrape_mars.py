@@ -41,9 +41,9 @@ def scrape_mars_news():
         mars_scrape_dict['news_title'] = news_title
         mars_scrape_dict['news_p'] = news_p
 
-        return mars_scrape_dict
-
         browser.quit()
+        
+        return mars_scrape_dict
 
 ################################################################################
 # JPL Mars Space Images - Featured Image
@@ -85,9 +85,10 @@ def scrape_jpl():
 
         mars_scrape_dict['image_url'] = featured_image_url
 
+        browser.quit()
+
         return mars_scrape_dict
 
-        browser.quit()
 ################################################################################
 # Mars Facts
 ################################################################################
@@ -113,9 +114,9 @@ def scrape_facts():
 
         mars_scrape_dict['html_table'] = html_table
 
-        return mars_scrape_dict
-
         browser.quit()
+
+        return mars_scrape_dict
 
 ################################################################################
 # Mars Hemispheres
@@ -174,7 +175,8 @@ def scrape_hemi():
                                                 })
 
                 mars_scrape_dict['hemis'] = hemisphere_image_urls
-
+        
+        browser.quit()
         return mars_scrape_dict
 
-        browser.quit()
+  
