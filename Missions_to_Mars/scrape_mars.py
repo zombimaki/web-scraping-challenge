@@ -83,8 +83,8 @@ mars_facts_url_df = pd.read_html(mars_facts_url)
 mars_clean_fact_df = mars_facts_url_df[0]
 
 # rename colums
-mars_clean_fact_df.columns = ["Fact", "Value"]
-mars_clean_fact_df = mars_clean_fact_df.set_index("Fact")
+mars_clean_fact_df.columns = ["Description", "Mars"]
+mars_clean_fact_df = mars_clean_fact_df.set_index("Description")
 
 # generate an html file of the df to the Resources folder
 mars_clean_fact_df.to_html('Resources\mars_facts.html')
